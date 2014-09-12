@@ -27,7 +27,8 @@ public class KeepAliveSignatureFactory implements SignatureFactory {
 
   private final String selfPeerId;
 
-  private static final String SUPER_POWER_KEY = "Your app master key";
+  //请用你 App 的master key
+  private static final String SUPER_POWER_KEY = "7it9yc8ixcyjzgbgz61gbdzclm098mbuxqoizmuar42bq7f1";
 
   public KeepAliveSignatureFactory(String appId, String selfPeerId) {
     this.appId = appId;

@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 
+import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.avos.avoscloud.AVMessage;
@@ -24,7 +25,6 @@ public class ChatDemoMessageReceiver extends AVMessageReceiver {
 
   @Override
   public void onSessionOpen(Context context, Session session) {
-
     this.sendOpenIntent(context);
   }
 

@@ -17,5 +17,4 @@ public class ToDoListApplication extends Application {
     // 注册子类
     AVObject.registerSubclass(Todo.class);
   }
-
 }
