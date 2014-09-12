@@ -19,10 +19,11 @@ Demo 使用的是公共的 app id 和 app key，您可以在`com.avos.demo.ToDoL
 
 不过首先需要在您的数据管理平台手工创建一个 Class，名称设定为`Todo`即可。
 
-## 阅读代码
+## 阅读代码 
 
-核心的用到 AVOS Cloud 服务都在[AVService.java](https://github.com/avoscloud/Android-SDK-demos/blob/master/AVOSCloud-Todo/src/com/avos/demo/AVService.java) 里
-```
+核心的用到 AVOS Cloud 服务都在[AVService.java](https://github.com/avoscloud/Android-SDK-demos/blob/master/AVOSCloud-Todo/src/com/avos/demo/AVService.java) 里，
+
+```java
 public class AVService {
   public static void AVInit(Context ctx) {
     // 初始化应用 Id 和 应用 Key，您可以在应用设置菜单里找到这些信息
