@@ -119,22 +119,13 @@ public class KeepAliveSignatureFactory implements SignatureFactory {
 
     List<String> signatureElements = new ArrayList<String>();
     signatureElements.add(appId);
-
     signatureElements.add(selfPeerId);
-
-
-    Collections.sort(watchIdsCopy);
-
     signatureElements.add(groupId);
-
-    signatureElements.add(action);
-
+    Collections.sort(watchIdsCopy);
     signatureElements.add(TextUtils.join(":", watchIdsCopy));
-
     signatureElements.add(String.valueOf(timestamp));
-
     signatureElements.add(nonce);
-
+    signatureElements.add(action);
     /*
      * 此处请一定不要直接复制黏贴到您的代码中
      * 

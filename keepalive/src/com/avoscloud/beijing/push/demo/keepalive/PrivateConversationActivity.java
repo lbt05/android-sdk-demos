@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.avos.avoscloud.AVInstallation;
@@ -56,7 +57,9 @@ public class PrivateConversationActivity extends Activity
     sendBtn = (ImageButton) this.findViewById(R.id.sendBtn);
     composeZone = (EditText) this.findViewById(R.id.chatText);
     selfId = AVInstallation.getCurrentInstallation().getInstallationId();
+    Log.d("lzw","selfId="+selfId);
     currentName = HTBApplication.lookupname(selfId);
+    Log.d("lzw","currentName="+currentName);
     session = SessionManager.getInstance(selfId);
     sendBtn.setOnClickListener(this);
     if (!AVUtils.isBlankString(getIntent().getExtras()

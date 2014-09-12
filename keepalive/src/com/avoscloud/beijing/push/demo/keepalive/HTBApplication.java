@@ -45,5 +45,4 @@ public class HTBApplication extends Application {
   public static void registerLocalNameCache(String peerId, String name) {
     userNameCache.put(peerId, name);
   }
-
 }
