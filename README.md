@@ -55,4 +55,10 @@ Todo页，
 
 ![img](https://raw.githubusercontent.com/lzwjava/plan/master/anytime360.png)
 
+## KeepAlive 
+您将学会，
+* 发送接收带签名的消息
+* 如何实现群聊和单聊
+
+![img](https://raw.githubusercontent.com/lzwjava/plan/master/chat360.png)
 
