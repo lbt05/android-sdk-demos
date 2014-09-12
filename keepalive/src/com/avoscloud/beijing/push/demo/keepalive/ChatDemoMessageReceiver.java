@@ -91,7 +91,8 @@ public class ChatDemoMessageReceiver extends AVMessageReceiver {
 
   @Override
   public void onMessageSent(Context context, Session session, AVMessage msg) {
-    LogUtil.avlog.d("message sent :" + msg);
+    LogUtil.avlog.d("message fromPeerId="+msg.getFromPeerId());
+    LogUtil.avlog.d("message to peerIds="+msg.getToPeerIds());
   }
 
   @Override

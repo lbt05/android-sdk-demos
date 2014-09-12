@@ -51,7 +51,6 @@ public class UserListFragment extends Fragment {
     // 取出所有的在线用户，显示出来
     // 如果您也想通过_Installation这张表来作为PeerId的根据，请通过管理界面打开_Installation的查找权限.
     // 默认系统不开放公开的查找权限
-    aviq.setLimit(1000);
     aviq.orderByDescending("updatedAt");
     aviq.whereEqualTo("valid", true).findInBackground(new FindCallback<AVObject>() {
 

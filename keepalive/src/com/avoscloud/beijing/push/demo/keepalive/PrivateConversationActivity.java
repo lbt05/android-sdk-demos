@@ -7,10 +7,7 @@ import java.util.List;
 import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.avos.avoscloud.AVInstallation;
-import com.avos.avoscloud.AVUtils;
-import com.avos.avoscloud.Session;
-import com.avos.avoscloud.SessionManager;
+import com.avos.avoscloud.*;
 import com.avoscloud.beijing.push.demo.keepalive.data.ChatDemoMessage;
 import com.avoscloud.beijing.push.demo.keepalive.data.ChatDemoMessage.MessageType;
 
@@ -80,6 +77,7 @@ public class PrivateConversationActivity extends Activity
 
     composeZone.getEditableText().clear();
     ChatDemoMessage message = new ChatDemoMessage();
+    message.setFromPeerId(selfId);
     message.setMessageContent(text);
     message.setMessageType(MessageType.Text);
     message.setMessageFrom(currentName);
