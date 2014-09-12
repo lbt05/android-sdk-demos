@@ -20,7 +20,7 @@
 * 如何根据 `installationId` 或 `channel` 推送，随意定义你的推送对象
 * 如何推送 `json` 数据以及获取数据
 
-![img](https://github.com/lzwjava/plan/blob/master/push.png)
+![img](https://raw.githubusercontent.com/lzwjava/plan/master/push.png)
 
 ## Todo Demo
 
