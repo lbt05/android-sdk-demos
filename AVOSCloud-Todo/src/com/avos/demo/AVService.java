@@ -13,6 +13,16 @@ import java.util.List;
  * Created by lzw on 14-9-12.
  */
 public class AVService {
+  public static void AVInit(Context ctx) {
+    // 初始化应用 Id 和 应用 Key，您可以在应用设置菜单里找到这些信息
+    AVOSCloud.initialize(ctx, "70l90kzm53nplnu013ala0j8wipr594d36m5zuz94ukvmh5s",
+        "lamrsuheyiaqcx4o7m3jaz4awaeukerit1mucnjwk7ibokfv");
+    // 启用崩溃错误报告
+    AVAnalytics.enableCrashReport(ctx, true);
+    // 注册子类
+    AVObject.registerSubclass(Todo.class);
+  }
+
   public static void fetchTodoById(String objectId,GetCallback<AVObject> getCallback) {
     Todo todo = new Todo();
     todo.setObjectId(objectId);
@@ -49,15 +59,5 @@ public class AVService {
   public static void searchQuery(String inputSearch) {
     AVSearchQuery searchQuery = new AVSearchQuery(inputSearch);
     searchQuery.search();
-  }
-
-  public static void AVInit(Context ctx) {
-    // 初始化应用 Id 和 应用 Key，您可以在应用设置菜单里找到这些信息
-    AVOSCloud.initialize(ctx, "70l90kzm53nplnu013ala0j8wipr594d36m5zuz94ukvmh5s",
-        "lamrsuheyiaqcx4o7m3jaz4awaeukerit1mucnjwk7ibokfv");
-    // 启用崩溃错误报告
-    AVAnalytics.enableCrashReport(ctx, true);
-    // 注册子类
-    AVObject.registerSubclass(Todo.class);
   }
 }
