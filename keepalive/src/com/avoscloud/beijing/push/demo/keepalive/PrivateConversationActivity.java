@@ -57,9 +57,7 @@ public class PrivateConversationActivity extends Activity
     sendBtn = (ImageButton) this.findViewById(R.id.sendBtn);
     composeZone = (EditText) this.findViewById(R.id.chatText);
     selfId = AVInstallation.getCurrentInstallation().getInstallationId();
-    Log.d("lzw","selfId="+selfId);
     currentName = HTBApplication.lookupname(selfId);
-    Log.d("lzw","currentName="+currentName);
     session = SessionManager.getInstance(selfId);
     sendBtn.setOnClickListener(this);
     if (!AVUtils.isBlankString(getIntent().getExtras()

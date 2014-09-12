@@ -52,6 +52,7 @@ public class UserListFragment extends Fragment {
     // 如果您也想通过_Installation这张表来作为PeerId的根据，请通过管理界面打开_Installation的查找权限.
     // 默认系统不开放公开的查找权限
     aviq.setLimit(1000);
+    aviq.orderByDescending("updatedAt");
     aviq.whereEqualTo("valid", true).findInBackground(new FindCallback<AVObject>() {
 
       @Override
@@ -64,7 +65,6 @@ public class UserListFragment extends Fragment {
           for (AVObject o : parseObjects) {
             HTBApplication.registerLocalNameCache(o.getString("installationId"),
                 o.getString("name"));
-            Log.d("lzw",o.getString("name")+" name "+o.getString("installationId"));
             if (!o.getString("installationId").equals(selfId)) {
               ChatUser u = new ChatUser();
               u.installationId = o.getString("installationId");

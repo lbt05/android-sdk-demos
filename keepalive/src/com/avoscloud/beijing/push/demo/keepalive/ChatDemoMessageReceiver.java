@@ -40,6 +40,7 @@ public class ChatDemoMessageReceiver extends AVMessageReceiver {
 
   @Override
   public void onMessage(Context context, Session session, AVMessage msg) {
+    LogUtil.avlog.d("onMessageReceived "+msg.getMessage());
     JSONObject j = JSONObject.parseObject(msg.getMessage());
     ChatDemoMessage message = new ChatDemoMessage();
     MessageListener listener = sessionMessageDispatchers.get(msg.getFromPeerId());
