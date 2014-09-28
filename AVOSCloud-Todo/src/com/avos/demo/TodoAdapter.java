@@ -39,14 +39,29 @@ public class TodoAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
+	ViewHolder holder;
+	
     if (convertView == null) {
       convertView = LayoutInflater.from(mContext).inflate(R.layout.todo_row, null);
+      holder = new ViewHolder();
+      holder.todo = (TextView)convertView.findViewById(R.id.text);
+      convertView.setTag(holder);
     }
-    TextView text = (TextView) convertView.findViewById(R.id.text);
+    else
+    {
+    	holder = (ViewHolder)convertView.getTag();
+    }
+    
     Todo todo = todos.get(position);
     if (todo != null)
-      text.setText(todo.getContent());
+    	holder.todo.setText(todo.getContent());
     return convertView;
   }
+  
+  static class ViewHolder
+  {
+	  TextView todo;
+  }
+  
 
 }
