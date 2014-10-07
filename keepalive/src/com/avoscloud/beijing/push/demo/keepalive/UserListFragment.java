@@ -52,8 +52,8 @@ public class UserListFragment extends Fragment {
     // 如果您也想通过_Installation这张表来作为PeerId的根据，请通过管理界面打开_Installation的查找权限.
     // 默认系统不开放公开的查找权限
     aviq.orderByDescending("updatedAt");
+    aviq.setLimit(1000);
     aviq.whereEqualTo("valid", true).findInBackground(new FindCallback<AVObject>() {
-
       @Override
       public void done(List<AVObject> parseObjects, AVException parseException) {
         if (parseException == null) {
@@ -71,6 +71,10 @@ public class UserListFragment extends Fragment {
               onlineUsers.add(u);
               peerIds.add(o.getString("installationId"));
             }
+          }
+          //max watch people=100
+          if(peerIds.size()>100){
+            peerIds=peerIds.subList(0,100);
           }
           SessionManager.getInstance(AVInstallation.getCurrentInstallation().getInstallationId())
               .watchPeers(peerIds);
