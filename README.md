@@ -20,7 +20,7 @@
 * 如何根据 `installationId` 或 `channel` 推送，随意定义你的推送对象
 * 如何推送 `json` 数据以及获取数据
 
-![img](https://github.com/lzwjava/plan/blob/master/push.png)
+![img](https://raw.githubusercontent.com/lzwjava/plan/master/push.png)
 
 ## Todo Demo
 
@@ -55,4 +55,10 @@ Todo页，
 
 ![img](https://raw.githubusercontent.com/lzwjava/plan/master/anytime360.png)
 
+## KeepAlive 
+您将学会，
+* 发送接收带签名的消息
+* 如何实现群聊和单聊
+
+![img](https://raw.githubusercontent.com/lzwjava/plan/master/chat360.png)
 
