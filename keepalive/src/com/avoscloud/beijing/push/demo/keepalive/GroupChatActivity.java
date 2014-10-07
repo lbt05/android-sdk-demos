@@ -90,15 +90,6 @@ public class GroupChatActivity extends Activity implements OnClickListener, Mess
     adapter.notifyDataSetChanged();
   }
 
-
-  private String makeMessage(String msg) {
-    JSONObject obj = new JSONObject();
-    obj.put("msg", msg);
-    obj.put("dn", currentName);
-
-    return obj.toJSONString();
-  }
-
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
 
