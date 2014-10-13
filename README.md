@@ -7,6 +7,7 @@
 * [AnyTime](./AnyTime)，从开发者“猫咪神”征集到一个应用，主要演示用户系统（注册、登陆等）、数据存储以及消息推送功能。
 * [AVOSCloud-Demo](./AVOSCloud-Demo)，一个综合型的例子，演示了大多数功能，但是UI比较简陋，需要您通过代码学习。
 * [keepalive](./keepalive),是实时聊天系统的例子,包括了用户间聊天和群聊功能等。
+* [Adventure](https://github.com/avoscloud/Adventure) 实时聊天，包括单聊、群聊、群组管理、用户管理。
 
 
 [AVOS Cloud 站点下载地址](https://download.avoscloud.com/demo/)
