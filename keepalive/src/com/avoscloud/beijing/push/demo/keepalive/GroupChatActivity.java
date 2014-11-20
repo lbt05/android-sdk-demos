@@ -13,6 +13,7 @@ import com.avos.avoscloud.AVUtils;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.GetCallback;
 import com.avos.avoscloud.Group;
+import com.avos.avoscloud.GroupMemberQueryCallback;
 import com.avos.avoscloud.Session;
 import com.avos.avoscloud.SessionManager;
 import com.avoscloud.beijing.push.demo.keepalive.data.ChatDemoMessage;
@@ -114,6 +115,8 @@ public class GroupChatActivity extends Activity implements OnClickListener, Mess
         return true;
       case R.id.action_invite:
         AVQuery<AVObject> aviq = new AVQuery<AVObject>("_Installation");
+        aviq.orderByDescending("updatedAt");
+        aviq.setLimit(2);
         aviq.whereEqualTo("valid", true).findInBackground(new FindCallback<AVObject>() {
 
           @Override
@@ -132,7 +135,22 @@ public class GroupChatActivity extends Activity implements OnClickListener, Mess
             }
           }
         });
+        return true;
+      case R.id.action_quit:
+        group.quit();
+        this.onBackPressed();
+        return true;
+      case R.id.action_get_members:
+        group.getMembersInBackground(new GroupMemberQueryCallback() {
 
+          @Override
+          public void done(List<String> parseObjects, AVException parseException) {
+            if (parseException == null) {
+              Toast.makeText(getApplicationContext(), JSON.toJSONString(parseObjects),
+                  Toast.LENGTH_SHORT).show();
+            }
+          }
+        });
         return true;
     }
 
@@ -148,7 +166,6 @@ public class GroupChatActivity extends Activity implements OnClickListener, Mess
 
   @Override
   public void onBackPressed() {
-    group.quit();
     super.onBackPressed();
     overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
   }

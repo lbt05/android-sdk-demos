@@ -55,11 +55,11 @@ public class ChatDemoMessage {
     this.messageFrom = messageFrom;
   }
 
-  public void setFromPeerId(String peerId){
+  public void setFromPeerId(String peerId) {
     this.internalMessage.setFromPeerId(peerId);
   }
 
-  public String getFromPeerId(){
+  public String getFromPeerId() {
     return internalMessage.getFromPeerId();
   }
 
@@ -96,7 +96,11 @@ public class ChatDemoMessage {
     params.put("content", this.messageContent);
     params.put("dn", this.messageFrom);
     internalMessage.setMessage(JSON.toJSONString(params));
+    if (!AVUtils.isBlankString(internalMessage.getFromPeerId())) {
+      internalMessage.setRequestReceipt(true);
+    } else if (!AVUtils.isBlankString(internalMessage.getGroupId())) {
+      internalMessage.setRequestReceipt(false);
+    }
     return internalMessage;
   }
-
 }

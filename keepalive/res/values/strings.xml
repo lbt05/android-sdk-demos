@@ -30,4 +30,6 @@
     <string name="main_join_group">加入聊天室</string>
     <string name="online_users">在线用户</string>
     <string name="available_group">聊天组</string>
+    <string name="action_quit">退出群组</string>
+    <string name="action_get_members">查询群成员</string>
 </resources>

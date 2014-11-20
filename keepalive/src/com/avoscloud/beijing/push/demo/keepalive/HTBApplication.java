@@ -26,16 +26,7 @@ public class HTBApplication extends Application {
         "i5gxt9tgr80vbavd790hhlfmmphpl7052iiirg379p14rwsu");
     AVInstallation.getCurrentInstallation().saveInBackground();
     PushService.setDefaultPushCallback(this, MainActivity.class);
-
-    try {
-      Class<?> avosclass = Class.forName("com.avos.avoscloud.AVOSCloud");
-      Method enableLogMethod = avosclass.getDeclaredMethod("showInternalDebugLog", boolean.class);
-      enableLogMethod.setAccessible(true);
-      enableLogMethod.invoke(avosclass, true);
-      LogUtil.avlog.i("successed enable avoscloud logs");
-    } catch (Exception e) {
-      LogUtil.avlog.i("failed enable avoscloud logs");
-    }
+    AVOSCloud.setDebugLogEnabled(true);
   }
 
   public static String lookupname(String peerId) {

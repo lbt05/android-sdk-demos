@@ -33,18 +33,19 @@ public class ChatDemoGroupMessageReceiver extends AVGroupMessageReceiver {
   }
 
   @Override
-  public void onInvited(Context context, Group group, String byPeerId) {
-    LogUtil.avlog.d("you're invited to " + group.getGroupId() + " by " + byPeerId);
+  public void onInvited(Context context, Group group, List<String> invitedPeerIds) {
+    LogUtil.avlog.d(invitedPeerIds + " are invited to " + group.getGroupId() + " by you");
   }
 
   @Override
-  public void onKicked(Context context, Group group, String byPeerId) {
-    LogUtil.avlog.d("you're kicked from " + group.getGroupId() + " by " + byPeerId);
+  public void onKicked(Context context, Group group, List<String> kickedPeers) {
+    LogUtil.avlog.d("you have kicked " + kickedPeers + " in group " + group.getGroupId());
   }
 
   @Override
   public void onMessageSent(Context context, Group group, AVMessage message) {
     LogUtil.avlog.d(message.getMessage() + " sent");
+    LogUtil.avlog.d("message sent timestamp=" + message.getTimestamp());
   }
 
   @Override
@@ -139,4 +140,9 @@ public class ChatDemoGroupMessageReceiver extends AVGroupMessageReceiver {
 
   static HashMap<String, MessageListener> groupMessageDispatchers =
       new HashMap<String, MessageListener>();
+
+  @Override
+  public void onInviteToGroup(Context context, Group group, String byPeerId) {
+    LogUtil.log.d("invited to group:" + group.getGroupId() + " by " + byPeerId);
+  }
 }

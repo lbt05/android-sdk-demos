@@ -72,12 +72,13 @@ public class UserListFragment extends Fragment {
               peerIds.add(o.getString("installationId"));
             }
           }
-          //max watch people=100
-          if(peerIds.size()>100){
-            peerIds=peerIds.subList(0,100);
+          // max watch people=100
+          if (peerIds.size() > 100) {
+            peerIds = peerIds.subList(0, 100);
           }
           SessionManager.getInstance(AVInstallation.getCurrentInstallation().getInstallationId())
               .watchPeers(peerIds);
+
           UserListAdapter adapter = new UserListAdapter(getActivity(), onlineUsers);
           onlineUserListView.setAdapter(adapter);
           onlineUserListView.setOnItemClickListener(adapter);
