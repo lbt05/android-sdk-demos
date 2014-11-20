@@ -1,4 +1,4 @@
-# AVOS Cloud Android SDK Demos
+# LeanCloud Android SDK Demos
 
 本目录存放 Android 的示例项目，包括：
 
@@ -7,9 +7,10 @@
 * [AnyTime](./AnyTime)，从开发者“猫咪神”征集到一个应用，主要演示用户系统（注册、登陆等）、数据存储以及消息推送功能。
 * [AVOSCloud-Demo](./AVOSCloud-Demo)，一个综合型的例子，演示了大多数功能，但是UI比较简陋，需要您通过代码学习。
 * [keepalive](./keepalive),是实时聊天系统的例子,包括了用户间聊天和群聊功能等。
+* [Adventure](https://github.com/leancloud/Adventure) 实时聊天，包括单聊、群聊、群组管理、用户管理。
 
 
-[AVOS Cloud 站点下载地址](https://download.avoscloud.com/demo/)
+[AVOS Cloud 站点下载地址](http://download.leancloud.cn/demo/)
 
 ## 推送 Demo 
 
@@ -49,7 +50,7 @@ Todo页，
 * 邮箱验证重设密码
 * 用户登录注册
 * 调用云函数
-* 创建AVObject
+* 创建 AVObject
 
 应用截图，
 
