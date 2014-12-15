@@ -1,8 +1,5 @@
 package com.avoscloud.beijing.push.demo.keepalive;
 
-import com.avos.avoscloud.AVInstallation;
-import com.avos.avoscloud.SessionManager;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +8,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.SessionManager;
 
 public class ChatTargetActivity extends FragmentActivity {
   ViewPager mPager;
@@ -32,8 +31,7 @@ public class ChatTargetActivity extends FragmentActivity {
 
   @Override
   public void onBackPressed() {
-
-    SessionManager.getInstance(AVInstallation.getCurrentInstallation().getInstallationId()).close();
+    SessionManager.getInstance(AVUser.getCurrentUser().getObjectId()).close();
     super.onBackPressed();
 
   }

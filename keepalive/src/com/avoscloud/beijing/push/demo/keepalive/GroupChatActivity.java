@@ -5,17 +5,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVInstallation;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.AVQuery;
-import com.avos.avoscloud.AVUtils;
-import com.avos.avoscloud.FindCallback;
-import com.avos.avoscloud.GetCallback;
-import com.avos.avoscloud.Group;
-import com.avos.avoscloud.GroupMemberQueryCallback;
-import com.avos.avoscloud.Session;
-import com.avos.avoscloud.SessionManager;
+import com.avos.avoscloud.*;
 import com.avoscloud.beijing.push.demo.keepalive.data.ChatDemoMessage;
 import com.avoscloud.beijing.push.demo.keepalive.data.ChatDemoMessage.MessageType;
 
@@ -58,7 +48,7 @@ public class GroupChatActivity extends Activity implements OnClickListener, Mess
     chatList.setAdapter(adapter);
     sendBtn = (ImageButton) this.findViewById(R.id.sendBtn);
     composeZone = (EditText) this.findViewById(R.id.chatText);
-    selfId = AVInstallation.getCurrentInstallation().getInstallationId();
+    selfId = AVUser.getCurrentUser().getObjectId();
     currentName = HTBApplication.lookupname(selfId);
     group = SessionManager.getInstance(selfId).getGroup(groupId);
 
@@ -114,18 +104,18 @@ public class GroupChatActivity extends Activity implements OnClickListener, Mess
         });
         return true;
       case R.id.action_invite:
-        AVQuery<AVObject> aviq = new AVQuery<AVObject>("_Installation");
-        aviq.orderByDescending("updatedAt");
-        aviq.setLimit(2);
-        aviq.whereEqualTo("valid", true).findInBackground(new FindCallback<AVObject>() {
+        AVQuery<AVUser> q = AVUser.getQuery();
+        q.orderByDescending("updatedAt");
+        q.setLimit(2);
+        q.findInBackground(new FindCallback<AVUser>() {
 
           @Override
-          public void done(List<AVObject> parseObjects, AVException parseException) {
+          public void done(List<AVUser> parseObjects, AVException parseException) {
             if (parseException == null) {
               List<String> inviteList = new LinkedList<String>();
               for (AVObject o : parseObjects) {
-                if (!selfId.equals(o.getString("installationId"))) {
-                  inviteList.add(o.getString("installationId"));
+                if (!selfId.equals(o.getString("objectId"))) {
+                  inviteList.add(o.getString("objectId"));
                 }
               }
               System.out.println(inviteList);
