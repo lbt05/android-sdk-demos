@@ -44,7 +44,7 @@ public class ToDoListActivity extends ListActivity {
     // Override this method to do custom remote calls
     @Override
     protected Void doInBackground(Void... params) {
-      todos= AVService.findTodos();
+      todos = AVService.findTodos();
       return null;
     }
 
@@ -77,7 +77,9 @@ public class ToDoListActivity extends ListActivity {
     }
   }
 
-  /** Called when the activity is first created. */
+  /**
+   * Called when the activity is first created.
+   */
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -150,7 +152,8 @@ public class ToDoListActivity extends ListActivity {
           protected Void doInBackground(Void... params) {
             try {
               todo.delete();
-            } catch (AVException e) {}
+            } catch (AVException e) {
+            }
             // 自定义事件统计
             AVAnalytics.onEvent(getApplicationContext(), "delete_todo");
             super.doInBackground();
@@ -173,14 +176,14 @@ public class ToDoListActivity extends ListActivity {
         new AlertDialog.Builder(this).setTitle("请输入").setIcon(android.R.drawable.ic_dialog_info)
             .setView(searchInput).setPositiveButton("确定", new OnClickListener() {
 
-              @Override
-              public void onClick(DialogInterface dialog, int which) {
-                String inputSearch = searchInput.getText().toString();
-                if (!AVUtils.isBlankString(inputSearch)) {
-                  AVService.searchQuery(inputSearch);
-                }
-              }
-            }).setNegativeButton("取消", null).show();
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            String inputSearch = searchInput.getText().toString();
+            if (!AVUtils.isBlankString(inputSearch)) {
+              AVService.searchQuery(inputSearch);
+            }
+          }
+        }).setNegativeButton("取消", null).show();
         return true;
     }
 
