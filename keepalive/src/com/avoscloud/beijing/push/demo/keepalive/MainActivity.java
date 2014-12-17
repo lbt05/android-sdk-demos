@@ -3,16 +3,7 @@ package com.avoscloud.beijing.push.demo.keepalive;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVInstallation;
-import com.avos.avoscloud.AVOSCloud;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.AVQuery;
-import com.avos.avoscloud.AVUtils;
-import com.avos.avoscloud.FindCallback;
-import com.avos.avoscloud.LogUtil;
-import com.avos.avoscloud.Session;
-import com.avos.avoscloud.SessionManager;
+import com.avos.avoscloud.*;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -56,7 +47,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
   @Override
   public void onClick(View v) {
-    String name = nameInput.getText().toString();
+    final String name = nameInput.getText().toString();
     if (name == null || name.trim().isEmpty()) {
       nameInput.setError("");
       return;
@@ -64,19 +55,56 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     SharedPreferences spr = PreferenceManager.getDefaultSharedPreferences(this);
     spr.edit().putString("username", name).commit();
-    AVInstallation currentInstallation = AVInstallation.getCurrentInstallation();
 
-    currentInstallation.put("name", name);
+    AVQuery<AVUser> q = AVUser.getQuery();
+    q.whereEqualTo("username", name);
+    q.getFirstInBackground(new GetCallback<AVUser>() {
+      @Override
+      public void done(AVUser object, AVException e) {
+        if (e != null) {
+          toastExeption(e);
+        } else {
+          if (object == null) {
+            final AVUser user = new AVUser();
+            user.setUsername(name);
+            user.setPassword(name);
+            user.signUpInBackground(new SignUpCallback() {
+              @Override
+              public void done(AVException e) {
+                if (e != null) {
+                  toastExeption(e);
+                } else {
+                  loginSucceed();
+                }
+              }
+            });
+          } else {
+            AVUser.logInInBackground(name, name, new LogInCallback<AVUser>() {
+              @Override
+              public void done(AVUser user, AVException e) {
+                if (e != null) {
+                  toastExeption(e);
+                } else {
+                  loginSucceed();
+                }
+              }
+            });
+          }
+        }
+      }
+    });
+  }
 
-
-    currentInstallation.saveInBackground();
-
-    // Intent intent = new Intent(this, HeartBeatActivity.class);
-    // startActivity(intent);
-    final String selfId = AVInstallation.getCurrentInstallation().getInstallationId();
+  public void loginSucceed() {
+    AVUser user = AVUser.getCurrentUser();
+    String selfId = user.getObjectId();
     List<String> peerIds = new LinkedList<String>();
     Session session = SessionManager.getInstance(selfId);
     session.setSignatureFactory(new KeepAliveSignatureFactory(AVOSCloud.applicationId, selfId));
     session.open(selfId, peerIds);
+  }
+
+  public void toastExeption(AVException e) {
+    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
   }
 }

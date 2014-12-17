@@ -53,7 +53,7 @@ public class PrivateConversationActivity extends Activity
     chatList.setAdapter(adapter);
     sendBtn = (ImageButton) this.findViewById(R.id.sendBtn);
     composeZone = (EditText) this.findViewById(R.id.chatText);
-    selfId = AVInstallation.getCurrentInstallation().getInstallationId();
+    selfId =AVUser.getCurrentUser().getObjectId();
     currentName = HTBApplication.lookupname(selfId);
     session = SessionManager.getInstance(selfId);
     sendBtn.setOnClickListener(this);
