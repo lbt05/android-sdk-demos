@@ -36,7 +36,7 @@ public class CustomReceiver extends BroadcastReceiver {
         NotificationManager mNotifyMgr =
             (NotificationManager) AVOSCloud.applicationContext
                 .getSystemService(
-                Context.NOTIFICATION_SERVICE);
+                    Context.NOTIFICATION_SERVICE);
         mNotifyMgr.notify(mNotificationId, mBuilder.build());
       }
     } catch (Exception e) {

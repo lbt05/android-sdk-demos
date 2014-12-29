@@ -1,14 +1,11 @@
 package com.avoscloud.beijing.push.demo.keepalive;
 
-import java.lang.reflect.Method;
-import java.util.HashMap;
-
 import android.app.Application;
-import android.util.Log;
 import com.avos.avoscloud.AVInstallation;
 import com.avos.avoscloud.AVOSCloud;
-import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.PushService;
+
+import java.util.HashMap;
 
 /**
  * Created by nsun on 4/28/14.
