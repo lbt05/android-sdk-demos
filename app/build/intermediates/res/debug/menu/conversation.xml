@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_kick"
+        android:title="@string/conversation_kick"/>
+    <item
+        android:id="@+id/action_invite"
+        android:title="@string/conversation_invite"/>
+    <item
+        android:id="@+id/action_quit"
+        android:title="@string/conversation_quit">
+    </item>
+    <item
+        android:id="@+id/action_get_members"
+        android:title="@string/conversation_get_members">
+    </item>
+        <item
+        android:id="@+id/action_update_name"
+        android:title="@string/conversation_update_name">
+    </item>
+</menu><!-- From: file:/Users/lbt05/code/keepalive/app/src/main/res/menu/conversation.xml -->

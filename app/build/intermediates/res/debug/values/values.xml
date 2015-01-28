@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/lbt05/code/keepalive/app/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-feedback/3.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="avoscloud_feedback_back_background">#333333</color>
+    <color name="avoscloud_feedback_input_wrap_background">#f8f8f8</color>
+    <color name="avoscloud_feedback_text_gray">#898989</color>
+    <color name="avoscloud_feedback_thread_actionbar_blue">#56b8f4</color>
+    <color name="avoscloud_feedback_thread_header_background">#000</color>
+    <color name="avoscloud_feedback_white">#fff</color>
+    <!-- From: file:/Users/lbt05/code/keepalive/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="avoscloud_tab_indicator_color">#56b8f4</color>
+    <color name="avoscloud_tab_text_color">#7c7c7c</color>
+    <!-- From: file:/Users/lbt05/code/keepalive/app/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-feedback/3.0/res/values/values.xml -->
+    <eat-comment/>
+    <color name="avoscloud_timestamp_gray">#888</color>
+    <!-- From: file:/Users/lbt05/code/keepalive/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_get_members">查询群成员</string>
+    <string name="action_invite">招呼点客人</string>
+    <string name="action_kick">踢光所有人，独霸聊天室</string>
+    <string name="action_logout">登出</string>
+    <string name="action_quit">退出群组</string>
+    <string name="action_show_users">打印在线用户</string>
+    <string name="action_trigger_push">触发一次离线消息推送</string>
+    <string name="app_name">Keep Alive</string>
+    <string name="available_group">聊天组</string>
+    <!-- From: file:/Users/lbt05/code/keepalive/app/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-feedback/3.0/res/values/values.xml -->
+    <eat-comment/>
+    <string name="avoscloud_feedback_app_name">AvosCloudFeedback</string>
+    <string name="avoscloud_feedback_contact_hint">Contact information</string>
+    <string name="avoscloud_feedback_input_hint">Write your feedback</string>
+    <string name="avoscloud_feedback_just_now">Just Now</string>
+    <string name="avoscloud_feedback_new_item">Got new reply </string>
+    <string name="avoscloud_feedback_select_image">Select Image</string>
+    <string name="avoscloud_feedback_send_text">Send</string>
+    <string name="avoscloud_feedback_thread_activity_title">Feedback</string>
+    <!-- From: file:/Users/lbt05/code/keepalive/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="confirm_exit">确定退出吗</string>
+    <string name="conversation_get_members">看看内部人员</string>
+    <string name="conversation_invite">加人</string>
+    <string name="conversation_kick">踢人</string>
+    <string name="conversation_quit">退出</string>
+    <string name="conversation_update_name">更改组名</string>
+    <string name="conversations">对话</string>
+    <string name="heartbean_step">把食指放到摄像头上眼睛盯着屏幕深呼吸。</string>
+    <string name="joined_notif">%s 来了</string>
+    <string name="left_notif">%s 走了</string>
+    <string name="main_join">开始</string>
+    <string name="main_join_group">加入聊天室</string>
+    <string name="main_text_error">起个名字！</string>
+    <string name="main_welcome">欢迎来到保持存活，起个名字就开始。</string>
+    <string name="notif_group">聊天组有一个新消息</string>
+    <string name="notif_title">有新消息</string>
+    <string name="online_users">在线用户</string>
+    <string name="password_error">密码有点问题</string>
+    <string name="session_opened">你登录了，屋里现在算上你有%d人</string>
+    <string name="session_paused">网络断了，稍安勿燥</string>
+    <string name="session_resumed">网连上了，继续吧</string>
+    <string name="toast_login">登录中</string>
+    <string name="username_empty_error">总得有个名字吧</string>
+    <!-- From: file:/Users/lbt05/code/keepalive/app/src/main/res/values/styles_keepalive.xml -->
+    <eat-comment/>
+    <style name="ActionBar.Solid.Keepalive" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_solid_keepalive</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Keepalive</item>
+    </style>
+    <style name="ActionBar.Transparent.Keepalive" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_keepalive</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Keepalive</item>
+    </style>
+    <style name="ActionButton.CloseMode.Keepalive" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_keepalive</item>
+    </style>
+    <style name="DropDownListView.Keepalive" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_keepalive</item>
+    </style>
+    <style name="DropDownNav.Keepalive" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_keepalive</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_keepalive</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_keepalive</item>
+    </style>
+    <style name="PopupMenu.Keepalive" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_keepalive</item>	
+    </style>
+    <style name="ProgressBar.Keepalive" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_keepalive</item>
+    </style>
+    <style name="Theme.Keepalive" parent="@android:style/Theme.Holo.Light">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Keepalive</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Keepalive</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Keepalive</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Keepalive</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_keepalive</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Keepalive</item>
+        
+        
+    </style>
+    <style name="Theme.Keepalive.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Keepalive</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Keepalive</item>
+    </style>
+</resources>
