@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Todo</string>
+    <string name="empty">There are no todo items right now.</string>
+    <string name="menu_insert">Create Todo</string>
+    <string name="content">Enter your todo content</string>
+    <string name="confirm">Done</string>
+    <string name="create_todo">Create Todo</string>
+    <string name="menu_delete">Delete Todo</string>
+    <string name="menu_search">Search</string>
+</resources>
