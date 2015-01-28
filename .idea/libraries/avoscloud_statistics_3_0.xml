@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="avoscloud-statistics-3.0">
-    <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/cn/leancloud/android/avoscloud-statistics/3.0/avoscloud-statistics-3.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
