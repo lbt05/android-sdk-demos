@@ -41,11 +41,11 @@ public class ConversationListFragment extends Fragment {
     client.getRecentConversations(0, 10, new AVIMConversationQueryCallback() {
 
       @Override
-      public void done(List<AVIMConversation> conversations, AVException error) {
+      public void done(List conversations, AVException error) {
         if (error == null) {
-          ConversationAdapter apdater = new ConversationAdapter(getActivity(), conversations);
-          conversationList.setAdapter(apdater);
-          conversationList.setOnItemClickListener(apdater);
+          ConversationAdapter adapter = new ConversationAdapter(getActivity(), conversations);
+          conversationList.setAdapter(adapter);
+          conversationList.setOnItemClickListener(adapter);
         } else {
           error.printStackTrace();
         }

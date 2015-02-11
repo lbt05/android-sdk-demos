@@ -43,15 +43,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Keepalive" >
         </activity>
-        <activity
-            android:name=".GroupChatActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:launchMode="singleInstance"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.Keepalive" >
-        </activity>
-
         <service android:name="com.avos.avoscloud.PushService" />
 
         <!--
@@ -68,12 +59,6 @@
             </intent-filter>
         </receiver>
         -->
-        <receiver android:name="com.avoscloud.beijing.push.demo.keepalive.ChatConversationMessageReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="com.avoscloud.im.v2.action" />
-            </intent-filter>
-        </receiver>
         <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

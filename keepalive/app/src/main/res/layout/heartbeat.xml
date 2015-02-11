@@ -28,7 +28,7 @@
     <ListView
         android:id="@+id/avoscloud_chat_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_above="@id/chat_input_wrapper"
         android:divider="#fff"
         android:dividerHeight="0dp" >

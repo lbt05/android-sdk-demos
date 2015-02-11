@@ -137,9 +137,8 @@ public class UserListFragment extends Fragment {
       attributes.put("public", false);
       client.createConversation(Arrays.asList(u.getObjectId()), attributes,
           new AVIMConversationCreatedCallback() {
-
             @Override
-            public void onConversationCreated(AVIMConversation conversation, AVException exception) {
+            public void done(AVIMConversation conversation, AVException e) {
               Intent i = new Intent(mContext, PrivateConversationActivity.class);
               i.putExtra(PrivateConversationActivity.DATA_EXTRA_SINGLE_DIALOG_TARGET,
                   conversation.getConversationId());

@@ -11,7 +11,9 @@ import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationCallback;
 
+import com.avos.avoscloud.im.v2.AVIMHistoryMessageCallback;
 import com.avos.avoscloud.im.v2.AVIMMessage;
+import com.avos.avoscloud.im.v2.AVIMMessageHandler;
 import com.avos.avoscloud.im.v2.AVIMMessageManager;
 import com.avos.avoscloud.im.v2.MessageHandler;
 
@@ -31,8 +33,7 @@ import android.widget.Toast;
 
 public class PrivateConversationActivity extends Activity
     implements
-    OnClickListener,
-    MessageHandler {
+    OnClickListener {
   public static final String DATA_EXTRA_SINGLE_DIALOG_TARGET = "single_target_peerId";
 
   String targetPeerId;
@@ -44,6 +45,7 @@ public class PrivateConversationActivity extends Activity
   ChatDataAdapter adapter;
   List<AVIMMessage> messages = new LinkedList<AVIMMessage>();
   AVIMConversation currentConversation;
+  MessageHandler messageHandler;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -83,7 +85,19 @@ public class PrivateConversationActivity extends Activity
       messages.add(msg);
       adapter.notifyDataSetChanged();
     }
+    messageHandler = new AVIMMessageHandler() {
+      @Override
+      public void onMessage(AVIMMessage msg, AVIMConversation conversation) {
+        if (conversation.getConversationId().equals(currentConversation.getConversationId())) {
+          messages.add(msg);
+          adapter.notifyDataSetChanged();
+        }
+      }
 
+      public void onMessageReceipt(AVIMMessage m, AVIMConversation conversation) {
+
+      }
+    };
   }
 
   @Override
@@ -123,19 +137,13 @@ public class PrivateConversationActivity extends Activity
   @Override
   public void onResume() {
     super.onResume();
-    AVIMMessageManager.registerMessageHandler(AVIMMessage.class, this);
+    AVIMMessageManager.registerMessageHandler(AVIMMessage.class, messageHandler);
   }
 
   @Override
   public void onPause() {
     super.onPause();
-    AVIMMessageManager.registerMessageHandler(AVIMMessage.class, this);
-  }
-
-  @Override
-  public void onMessage(AVIMMessage msg) {
-    messages.add(msg);
-    adapter.notifyDataSetChanged();
+    AVIMMessageManager.unregisterMessageHandler(AVIMMessage.class, messageHandler);
   }
 
   private void updateConversationName() {
@@ -215,6 +223,14 @@ public class PrivateConversationActivity extends Activity
       case R.id.action_update_name:
         this.updateConversationName();
         return true;
+      case R.id.action_query_message_history:
+        currentConversation.queryHistoryMessage(new AVIMHistoryMessageCallback() {
+          @Override
+          public void done(List<AVIMMessage> avimMessages, AVException e) {
+            Toast.makeText(PrivateConversationActivity.this, "messages got:" + avimMessages.size(),
+                Toast.LENGTH_SHORT).show();
+          }
+        });
     }
     return super.onOptionsItemSelected(item);
   }
