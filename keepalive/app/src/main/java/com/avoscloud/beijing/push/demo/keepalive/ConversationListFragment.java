@@ -7,6 +7,7 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
+import com.avos.avoscloud.im.v2.AVIMConversationQuery;
 import com.avos.avoscloud.im.v2.AVIMConversationQueryCallback;
 
 import android.os.Bundle;
@@ -38,16 +39,17 @@ public class ConversationListFragment extends Fragment {
   public void queryConversations() {
     LogUtil.avlog.d("try to fetch recent conversations");
     AVIMClient client = AVIMClient.getInstance(selfId);
-    client.getRecentConversations(0, 10, new AVIMConversationQueryCallback() {
-
+    AVIMConversationQuery query = client.getQuery();
+    query.whereEqualTo("public", true);
+    query.findInBackground(new AVIMConversationQueryCallback() {
       @Override
-      public void done(List conversations, AVException error) {
-        if (error == null) {
+      public void done(List<AVIMConversation> conversations, AVException e) {
+        if (e == null) {
           ConversationAdapter adapter = new ConversationAdapter(getActivity(), conversations);
           conversationList.setAdapter(adapter);
           conversationList.setOnItemClickListener(adapter);
         } else {
-          error.printStackTrace();
+          e.printStackTrace();
         }
       }
     });

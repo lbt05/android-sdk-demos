@@ -1,0 +1,13 @@
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/classes/debug
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-b82149537376abc09314cceb48980f602909be06.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/httpmime-4.2.4-f0c948d872f4ada84aca14cee67f9ee527b76c07.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/classes-972385510d3b7c422699dd906caeff71a21628e7.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/avoscloud-statistics-3.0-67bc343de9b577efd86283eefecdc4722705e50c.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.6-7e6f27d3abbabbbf8be376afa174b48fc4cd7ee9.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/Java-WebSocket-1.2.0-leancloud-81d6382b14742d2a958f63119218e1a4c03d7289.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-5bcb5c1197201428ce789f1657431ad4534b08d5.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/httpcore-4.2.4-fa367d4e2492249c05ab5b13f8c38d695c5c2712.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/classes-5e093e439628b6a247113d0226059902d8c877cb.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/avoscloud-sdk-3.0-152437a0436a886fe485352b4130423fd31e3926.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/fastjson-1.1.37-leancloud-7ac07d3764228d8eeab815987743ae0602b872f7.jar
+/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/classes-a88fab1e69134b13315f4f3527ea934863604318.jar

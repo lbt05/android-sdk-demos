@@ -63,7 +63,7 @@ public class ConversationAdapter extends BaseAdapter implements OnItemClickListe
         Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
 
     holder.avatar.setBackgroundColor(avatarColor);
-    holder.username.setText((String) this.getItem(position).getInfo().get("name"));
+    holder.username.setText((String) this.getItem(position).getAttributes().get("name"));
     return convertView;
   }
 

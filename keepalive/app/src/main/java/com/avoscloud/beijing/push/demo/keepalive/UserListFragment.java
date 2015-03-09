@@ -15,6 +15,8 @@ import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationCreatedCallback;
+import com.avos.avoscloud.im.v2.AVIMConversationQuery;
+import com.avos.avoscloud.im.v2.AVIMConversationQueryCallback;
 
 import android.app.Activity;
 import android.content.Context;
@@ -73,7 +75,7 @@ public class UserListFragment extends Fragment {
     return rootView;
   }
 
-  public static class UserListAdapter extends BaseAdapter implements OnItemClickListener {
+  public class UserListAdapter extends BaseAdapter implements OnItemClickListener {
 
     public UserListAdapter(Context context, List<AVUser> users) {
       this.onlineUsers = users;
@@ -129,25 +131,46 @@ public class UserListFragment extends Fragment {
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View v, int position, long itemId) {
-      AVUser u = this.getItem(position);
-      AVIMClient client = AVIMClient.getInstance(AVUser.getCurrentUser().getObjectId());
-      Map<String, Object> attributes = new HashMap<String, Object>();
-      attributes.put("name", "[" + u.getUsername() + "," + AVUser.getCurrentUser().getUsername()
-          + "]");
-      attributes.put("public", false);
-      client.createConversation(Arrays.asList(u.getObjectId()), attributes,
-          new AVIMConversationCreatedCallback() {
-            @Override
-            public void done(AVIMConversation conversation, AVException e) {
-              Intent i = new Intent(mContext, PrivateConversationActivity.class);
-              i.putExtra(PrivateConversationActivity.DATA_EXTRA_SINGLE_DIALOG_TARGET,
-                  conversation.getConversationId());
-              mContext.startActivity(i);
-              ((Activity) mContext).overridePendingTransition(android.R.anim.slide_in_left,
-                  android.R.anim.slide_out_right);
+      final AVUser u = this.getItem(position);
+      final AVIMClient client = AVIMClient.getInstance(AVUser.getCurrentUser().getObjectId());
+      AVIMConversationQuery query = client.getQuery();
+      query.conversationsWithMembers(Arrays.asList(u.getObjectId(),AVUser.getCurrentUser().getObjectId()));
+      query.whereEqualTo("public", true);
+      query.limit(1);
+      query.orderByDescending("lm");
+      query.findInBackground(new AVIMConversationQueryCallback() {
+        @Override
+        public void done(List<AVIMConversation> avimConversations, AVException e) {
+          if (e == null) {
+            if (avimConversations.size() > 0) {
+              startConversationActivity(avimConversations.get(0));
+            } else {
+              Map<String, Object> attributes = new HashMap<String, Object>();
+              attributes.put("name", "[" + u.getUsername() + ","
+                  + AVUser.getCurrentUser().getUsername()
+                  + "]");
+              attributes.put("public", true);
+              client.createConversation(Arrays.asList(u.getObjectId()), attributes,
+                  new AVIMConversationCreatedCallback() {
+                    @Override
+                    public void done(AVIMConversation conversation, AVException e) {
+                      startConversationActivity(conversation);
+                    }
+                  });
             }
-          });
+          }
+        }
+      });
     }
+  }
+
+  private void startConversationActivity(AVIMConversation conversation) {
+    Intent i = new Intent(getActivity(), PrivateConversationActivity.class);
+    i.putExtra(PrivateConversationActivity.DATA_EXTRA_SINGLE_DIALOG_TARGET,
+        conversation.getConversationId());
+    startActivity(i);
+    getActivity().overridePendingTransition(android.R.anim.slide_in_left,
+        android.R.anim.slide_out_right);
   }
 
 }

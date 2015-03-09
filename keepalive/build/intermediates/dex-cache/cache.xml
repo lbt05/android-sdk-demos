@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-5bcb5c1197201428ce789f1657431ad4534b08d5.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/classes-a88fab1e69134b13315f4f3527ea934863604318.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-feedback/3.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d73613ee8cfc3dd84bbf54bf95ad5b7e70784d66">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/classes-972385510d3b7c422699dd906caeff71a21628e7.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/.gradle/caches/modules-2/files-2.1/cn.leancloud.android/Java-WebSocket/1.2.0-leancloud/221fb6750fcf164a85a98bbbafe0879e18868562/Java-WebSocket-1.2.0-leancloud.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="221fb6750fcf164a85a98bbbafe0879e18868562">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/Java-WebSocket-1.2.0-leancloud-81d6382b14742d2a958f63119218e1a4c03d7289.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/.m2/repository/cn/leancloud/android/avoscloud-sdk/3.0/avoscloud-sdk-3.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="6fbc1c0b2a23d43f11b0e7af00767558671cf045">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/avoscloud-sdk-3.0-152437a0436a886fe485352b4130423fd31e3926.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/.gradle/caches/modules-2/files-2.1/cn.leancloud.android/fastjson/1.1.37-leancloud/f0eb5dd7cf5d5e186a49179c2e956e5a34c71956/fastjson-1.1.37-leancloud.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f0eb5dd7cf5d5e186a49179c2e956e5a34c71956">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/fastjson-1.1.37-leancloud-7ac07d3764228d8eeab815987743ae0602b872f7.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/dev/adt-bundle-mac-x86_64-20140321/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-b82149537376abc09314cceb48980f602909be06.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.6/a845a88238be0b5be9d238652c1bc0605ef91f52/android-async-http-1.4.6.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a845a88238be0b5be9d238652c1bc0605ef91f52">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.6-7e6f27d3abbabbbf8be376afa174b48fc4cd7ee9.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/exploded-aar/cn.leancloud.android/avoscloud-push/3.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ada404b0b67d7fadd8a83e85c7ef959855eee6a5">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/classes-5e093e439628b6a247113d0226059902d8c877cb.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/.m2/repository/cn/leancloud/android/avoscloud-statistics/3.0/avoscloud-statistics-3.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e100ceb029daa94cc7b1820d6ecacd060a6daa4f">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/avoscloud-statistics-3.0-67bc343de9b577efd86283eefecdc4722705e50c.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.2.4/3b7f38df6de5dd8b500e602ae8c2dd5ee446f883/httpcore-4.2.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3b7f38df6de5dd8b500e602ae8c2dd5ee446f883">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/httpcore-4.2.4-fa367d4e2492249c05ab5b13f8c38d695c5c2712.jar" />
+    </item>
+    <item
+        jar="/Users/lbt05/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.2.4/dba4d4d224e2ca872af5be8d2992777583145478/httpmime-4.2.4.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dba4d4d224e2ca872af5be8d2992777583145478">
+        <dex dex="/Users/lbt05/AC/android-sdk-demos/keepalive/app/build/intermediates/pre-dexed/debug/httpmime-4.2.4-f0c948d872f4ada84aca14cee67f9ee527b76c07.jar" />
+    </item>
+
+</items>

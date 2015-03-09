@@ -111,7 +111,8 @@ public class PrivateConversationActivity extends Activity
 
     final AVIMMessage m = new AVIMMessage();
     m.setContent(text);
-    currentConversation.sendMessage(m, AVIMConversation.NONTRANSIENT_MESSAGE_FLAG,
+
+    currentConversation.sendMessage(m, AVIMConversation.TRANSIENT_MESSAGE_FLAG,
         new AVIMConversationCallback() {
 
           @Override
@@ -156,9 +157,9 @@ public class PrivateConversationActivity extends Activity
           @Override
           public void onClick(DialogInterface dialog, int which) {
             String i = input.getText().toString();
-            Map<String, Object> info = currentConversation.getInfo();
+            Map<String, Object> info = currentConversation.getAttributes();
             info.put("name", i);
-            currentConversation.setInfo(info);
+            currentConversation.setAttributes(info);
             currentConversation.updateInfoInBackground(new AVIMConversationCallback() {
 
               @Override
@@ -186,7 +187,6 @@ public class PrivateConversationActivity extends Activity
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-
     switch (item.getItemId()) {
       case R.id.action_kick:
         currentConversation.kickMembers(Arrays.asList("123"), new AVIMConversationCallback() {
@@ -209,7 +209,6 @@ public class PrivateConversationActivity extends Activity
         return true;
       case R.id.action_quit:
         currentConversation.quit(new AVIMConversationCallback() {
-
           @Override
           public void done(AVException e) {
             onBackPressed();
