@@ -4,7 +4,7 @@
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/avoscloud_chat_demo_user_id"
+        android:id="@+id/leancloud_chat_demo_user_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -15,20 +15,20 @@
         android:padding="5dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/avoscloud_chat_demo_user_id"
+        android:layout_toRightOf="@id/leancloud_chat_demo_user_id"
         android:background="#e6f6ff"
         android:orientation="vertical"
         android:paddingLeft="15dp"
         android:paddingRight="15dp" >
 
         <TextView
-            android:id="@+id/avoscloud_chat_demo_message"
+            android:id="@+id/leancloud_chat_demo_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="5dp"
@@ -36,9 +36,10 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/avoscloud_feedback_timestamp"
-            android:layout_width="wrap_content"
+            android:id="@+id/leancloud_chat_demo_message_status"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:textColor="#999"
             android:textSize="12sp" >
         </TextView>

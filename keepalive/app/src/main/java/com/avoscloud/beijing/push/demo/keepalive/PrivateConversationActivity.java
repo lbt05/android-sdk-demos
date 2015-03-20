@@ -3,19 +3,19 @@ package com.avoscloud.beijing.push.demo.keepalive;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
-import com.alibaba.fastjson.JSON;
 import com.avos.avoscloud.*;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
-import com.avos.avoscloud.im.v2.AVIMConversationCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 
-import com.avos.avoscloud.im.v2.AVIMHistoryMessageCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMConversationMemberCountCallback;
 import com.avos.avoscloud.im.v2.AVIMMessage;
 import com.avos.avoscloud.im.v2.AVIMMessageHandler;
 import com.avos.avoscloud.im.v2.AVIMMessageManager;
-import com.avos.avoscloud.im.v2.MessageHandler;
+import com.avos.avoscloud.im.v2.callback.AVIMMessagesQueryCallback;
+import com.avos.avoscloud.im.v2.messages.AVIMLocationMessage;
+import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -45,20 +45,21 @@ public class PrivateConversationActivity extends Activity
   ChatDataAdapter adapter;
   List<AVIMMessage> messages = new LinkedList<AVIMMessage>();
   AVIMConversation currentConversation;
-  MessageHandler messageHandler;
+  AVIMMessageHandler messageHandler;
+  AVIMClient currentClient;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     this.setContentView(R.layout.heartbeat);
     targetPeerId = this.getIntent().getStringExtra(DATA_EXTRA_SINGLE_DIALOG_TARGET);
-
+    selfId = AVUser.getCurrentUser().getObjectId();
     // 您可以在这里读取本地的聊天记录，并且加载进来。
     // 　我们会在未来加入这些代码
 
     // 上面这些都是以前的，后面我要加的是新的conversation的
-    AVIMClient client = AVIMClient.getInstance(selfId);
-    currentConversation = client.getConversation(targetPeerId);
+    currentClient = AVIMClient.getInstance(selfId);
+    currentConversation = currentClient.getConversation(targetPeerId);
     currentConversation.fetchInfoInBackground(new AVIMConversationCallback() {
 
       @Override
@@ -72,30 +73,33 @@ public class PrivateConversationActivity extends Activity
     });
 
     chatList = (ListView) this.findViewById(R.id.avoscloud_chat_list);
-    adapter = new ChatDataAdapter(this, messages);
+    adapter = new ChatDataAdapter(this, messages, selfId);
     chatList.setAdapter(adapter);
     sendBtn = (ImageButton) this.findViewById(R.id.sendBtn);
     composeZone = (EditText) this.findViewById(R.id.chatText);
     selfId = AVUser.getCurrentUser().getObjectId();
-    currentName = HTBApplication.lookupname(selfId);
+    currentName = HTBApplication.lookupName(selfId);
 
     sendBtn.setOnClickListener(this);
     if (getIntent().getExtras().getParcelable(Session.AV_SESSION_INTENT_DATA_KEY) != null) {
-      AVIMMessage msg = getIntent().getExtras().getParcelable(Session.AV_SESSION_INTENT_DATA_KEY);
+      AVIMMessage msg = getIntent().getParcelableExtra(Session.AV_SESSION_INTENT_DATA_KEY);
       messages.add(msg);
       adapter.notifyDataSetChanged();
     }
     messageHandler = new AVIMMessageHandler() {
       @Override
-      public void onMessage(AVIMMessage msg, AVIMConversation conversation) {
-        if (conversation.getConversationId().equals(currentConversation.getConversationId())) {
+      public void onMessage(AVIMMessage msg, AVIMConversation conversation, AVIMClient client) {
+        if (client.equals(currentClient)
+            && conversation.getConversationId().equals(currentConversation.getConversationId())) {
           messages.add(msg);
           adapter.notifyDataSetChanged();
+          LogUtil.avlog.d("MSG received");
         }
       }
 
-      public void onMessageReceipt(AVIMMessage m, AVIMConversation conversation) {
-
+      @Override
+      public void onMessageReceipt(AVIMMessage m, AVIMConversation conversation, AVIMClient client) {
+        LogUtil.avlog.d("MSG  delivered");
       }
     };
   }
@@ -109,10 +113,10 @@ public class PrivateConversationActivity extends Activity
     }
     composeZone.getEditableText().clear();
 
-    final AVIMMessage m = new AVIMMessage();
-    m.setContent(text);
+    final AVIMTextMessage m = new AVIMTextMessage();
+    m.setText(text);
 
-    currentConversation.sendMessage(m, AVIMConversation.TRANSIENT_MESSAGE_FLAG,
+    currentConversation.sendMessage(m, AVIMConversation.RECEIPT_MESSAGE_FLAG,
         new AVIMConversationCallback() {
 
           @Override
@@ -121,6 +125,7 @@ public class PrivateConversationActivity extends Activity
               e.printStackTrace();
             } else {
               System.out.println("messageSent");
+              adapter.notifyDataSetChanged();
             }
           }
         });
@@ -138,13 +143,13 @@ public class PrivateConversationActivity extends Activity
   @Override
   public void onResume() {
     super.onResume();
-    AVIMMessageManager.registerMessageHandler(AVIMMessage.class, messageHandler);
+    AVIMMessageManager.registerMessageHandler(AVIMTextMessage.class, messageHandler);
   }
 
   @Override
   public void onPause() {
     super.onPause();
-    AVIMMessageManager.unregisterMessageHandler(AVIMMessage.class, messageHandler);
+    AVIMMessageManager.unregisterMessageHandler(AVIMTextMessage.class, messageHandler);
   }
 
   private void updateConversationName() {
@@ -157,9 +162,7 @@ public class PrivateConversationActivity extends Activity
           @Override
           public void onClick(DialogInterface dialog, int which) {
             String i = input.getText().toString();
-            Map<String, Object> info = currentConversation.getAttributes();
-            info.put("name", i);
-            currentConversation.setAttributes(info);
+            currentConversation.setName(i);
             currentConversation.updateInfoInBackground(new AVIMConversationCallback() {
 
               @Override
@@ -216,18 +219,42 @@ public class PrivateConversationActivity extends Activity
         });
         return true;
       case R.id.action_get_members:
-        Toast.makeText(this, currentConversation.getMembers().toString(), Toast.LENGTH_SHORT)
+        Toast.makeText(PrivateConversationActivity.this,
+            currentConversation.getMembers().toString(), Toast.LENGTH_SHORT)
             .show();
         return true;
       case R.id.action_update_name:
         this.updateConversationName();
         return true;
       case R.id.action_query_message_history:
-        currentConversation.queryHistoryMessage(new AVIMHistoryMessageCallback() {
+        currentConversation.queryMessages(new AVIMMessagesQueryCallback(){
           @Override
           public void done(List<AVIMMessage> avimMessages, AVException e) {
             Toast.makeText(PrivateConversationActivity.this, "messages got:" + avimMessages.size(),
                 Toast.LENGTH_SHORT).show();
+          }
+        });
+        break;
+      case R.id.action_mockup_location:
+        AVIMLocationMessage locationMessage = new AVIMLocationMessage();
+        locationMessage.setLocation(new AVGeoPoint(138.4, 34.8));
+        currentConversation.sendMessage(locationMessage, new AVIMConversationCallback() {
+          @Override
+          public void done(AVException e) {
+            if (e == null) {
+              Toast.makeText(PrivateConversationActivity.this, getResources().getString(R.string.msg_here), Toast.LENGTH_SHORT).show();
+            }
+          }
+        });
+        break;
+      case R.id.action_query_member_count:
+        currentConversation.getMemberCount(new AVIMConversationMemberCountCallback() {
+          @Override
+          public void done(Integer count, AVException e) {
+            if (e == null) {
+              Toast.makeText(PrivateConversationActivity.this, "群内有" + count + "人",
+                  Toast.LENGTH_SHORT).show();
+            }
           }
         });
     }

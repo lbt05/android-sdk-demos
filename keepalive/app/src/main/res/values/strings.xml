@@ -33,4 +33,9 @@
 	<string name="conversation_invite">加人</string>
 	<string name="conversation_get_members">看看内部人员</string>
 	<string name="conversation_update_name">更改组名</string>
+    <string name="message_sending">...</string>
+    <string name="message_sent">sent </string>
+    <string name="message_received">received </string>
+    <string name="message_read">read </string>
+    <string name="msg_here">我也在这里</string>
 </resources>

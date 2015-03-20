@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.im.v2.AVIMConversation;
-import com.avos.avoscloud.im.v2.AVIMConversationCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 
 import android.app.Activity;
 import android.content.Context;
@@ -63,7 +63,7 @@ public class ConversationAdapter extends BaseAdapter implements OnItemClickListe
         Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
 
     holder.avatar.setBackgroundColor(avatarColor);
-    holder.username.setText((String) this.getItem(position).getAttributes().get("name"));
+    holder.username.setText((String) this.getItem(position).getName());
     return convertView;
   }
 

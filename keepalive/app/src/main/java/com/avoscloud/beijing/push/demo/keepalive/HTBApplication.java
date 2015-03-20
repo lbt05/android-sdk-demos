@@ -21,6 +21,8 @@ import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMMessage;
 import com.avos.avoscloud.im.v2.AVIMMessageHandler;
 import com.avos.avoscloud.im.v2.AVIMMessageManager;
+import com.avos.avoscloud.im.v2.messages.AVIMLocationMessage;
+import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
 
 /**
  * Created by nsun on 4/28/14.
@@ -46,11 +48,20 @@ public class HTBApplication extends Application {
     // 设置默认的消息处理单元
     AVIMMessageManager.registerDefaultMessageHandler(new AVIMMessageHandler() {
       @Override
-      public void onMessage(AVIMMessage message, AVIMConversation conversation) {
+      public void onMessage(AVIMMessage message, AVIMConversation conversation, AVIMClient client) {
         NotificationManager nm =
             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        String ctnt = HTBApplication.lookupname(message.getFrom()) + "：" + message.getContent();
+        String ctnt = null;
+        if (message instanceof AVIMTextMessage) {
+          ctnt =
+              HTBApplication.lookupName(message.getFrom()) + "："
+                  + ((AVIMTextMessage) message).getText();
+        } else if (message instanceof AVIMLocationMessage) {
+          ctnt = HTBApplication.lookupName(message.getFrom()) + " sent you a location message";
+        } else {
+          ctnt = HTBApplication.lookupName(message.getFrom()) + message.getContent();
+        }
         Intent resultIntent =
             new Intent(getApplicationContext(), PrivateConversationActivity.class);
         resultIntent.putExtra(PrivateConversationActivity.DATA_EXTRA_SINGLE_DIALOG_TARGET,
@@ -83,7 +94,7 @@ public class HTBApplication extends Application {
     AVIMMessageManager.setConversationEventHandler(new ChatConversationEventHandler());
   }
 
-  public static String lookupname(String peerId) {
+  public static String lookupName(String peerId) {
     return userNameCache.get(peerId);
   }
 

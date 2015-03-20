@@ -8,15 +8,14 @@ import java.util.Map;
 import java.util.Random;
 
 import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
-import com.avos.avoscloud.im.v2.AVIMConversationCreatedCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
-import com.avos.avoscloud.im.v2.AVIMConversationQueryCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
 
 import android.app.Activity;
 import android.content.Context;
@@ -134,7 +133,7 @@ public class UserListFragment extends Fragment {
       final AVUser u = this.getItem(position);
       final AVIMClient client = AVIMClient.getInstance(AVUser.getCurrentUser().getObjectId());
       AVIMConversationQuery query = client.getQuery();
-      query.conversationsWithMembers(Arrays.asList(u.getObjectId(),AVUser.getCurrentUser().getObjectId()));
+      query.withMembers(Arrays.asList(u.getObjectId(), AVUser.getCurrentUser().getObjectId()));
       query.whereEqualTo("public", true);
       query.limit(1);
       query.orderByDescending("lm");
@@ -146,11 +145,10 @@ public class UserListFragment extends Fragment {
               startConversationActivity(avimConversations.get(0));
             } else {
               Map<String, Object> attributes = new HashMap<String, Object>();
-              attributes.put("name", "[" + u.getUsername() + ","
-                  + AVUser.getCurrentUser().getUsername()
-                  + "]");
               attributes.put("public", true);
-              client.createConversation(Arrays.asList(u.getObjectId()), attributes,
+              client.createConversation(Arrays.asList(u.getObjectId()), "[" + u.getUsername() + ","
+                  + AVUser.getCurrentUser().getUsername()
+                  + "]", attributes, false,
                   new AVIMConversationCreatedCallback() {
                     @Override
                     public void done(AVIMConversation conversation, AVException e) {

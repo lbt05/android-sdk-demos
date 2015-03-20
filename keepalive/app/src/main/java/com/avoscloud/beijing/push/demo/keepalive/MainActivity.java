@@ -4,9 +4,10 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.AVUtils;
 import com.avos.avoscloud.LogInCallback;
+import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.im.v2.AVIMClient;
-import com.avos.avoscloud.im.v2.AVIMClient.IMClientCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -119,9 +120,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     HTBApplication.registerLocalNameCache(AVUser.getCurrentUser().getObjectId(), AVUser
         .getCurrentUser().getUsername());
     AVIMClient client = AVIMClient.getInstance(selfId);
-    client.open(new IMClientCallback() {
+      LogUtil.avlog.d("try to  client open");
+    client.open(new AVIMClientCallback() {
       @Override
       public void done(AVIMClient client, AVException e) {
+          LogUtil.avlog.d("callback from client open");
         if (e == null) {
           Intent intent = new Intent(MainActivity.this, ChatTargetActivity.class);
           startActivity(intent);

@@ -3,7 +3,7 @@ package com.avoscloud.beijing.push.demo.keepalive;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.im.v2.AVIMClient;
-import com.avos.avoscloud.im.v2.AVIMClient.IMClientCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -35,7 +35,7 @@ public class ChatTargetActivity extends FragmentActivity {
   @Override
   public void onBackPressed() {
 
-    AVIMClient.getInstance(AVUser.getCurrentUser().getObjectId()).close(new IMClientCallback() {
+    AVIMClient.getInstance(AVUser.getCurrentUser().getObjectId()).close(new AVIMClientCallback() {
 
       @Override
       public void done(AVIMClient client, AVException e) {

@@ -1,5 +1,6 @@
 package com.avoscloud.beijing.push.demo.keepalive;
 
+import java.util.Arrays;
 import java.util.List;
 
 import com.avos.avoscloud.AVException;
@@ -8,7 +9,7 @@ import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
-import com.avos.avoscloud.im.v2.AVIMConversationQueryCallback;
+import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -41,6 +42,7 @@ public class ConversationListFragment extends Fragment {
     AVIMClient client = AVIMClient.getInstance(selfId);
     AVIMConversationQuery query = client.getQuery();
     query.whereEqualTo("public", true);
+    query.containsMembers(Arrays.asList(selfId));
     query.findInBackground(new AVIMConversationQueryCallback() {
       @Override
       public void done(List<AVIMConversation> conversations, AVException e) {

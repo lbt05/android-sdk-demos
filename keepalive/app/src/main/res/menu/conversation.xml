@@ -19,4 +19,10 @@
     <item
         android:id="@+id/action_query_message_history"
         android:title="查询聊天记录"></item>
+    <item
+        android:id="@+id/action_mockup_location"
+        android:title="发送一个模拟地址消息"></item>
+    <item
+        android:id="@+id/action_query_member_count"
+        android:title="查询成员总数"></item>
 </menu>
