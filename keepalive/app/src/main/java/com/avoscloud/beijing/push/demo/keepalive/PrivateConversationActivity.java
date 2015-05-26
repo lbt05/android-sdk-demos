@@ -94,6 +94,8 @@ public class PrivateConversationActivity extends Activity
           messages.add(msg);
           adapter.notifyDataSetChanged();
           LogUtil.avlog.d("MSG received");
+        }else{
+            LogUtil.avlog.d("MSG from another client");
         }
       }
 
@@ -227,11 +229,16 @@ public class PrivateConversationActivity extends Activity
         this.updateConversationName();
         return true;
       case R.id.action_query_message_history:
-        currentConversation.queryMessages(new AVIMMessagesQueryCallback(){
+        currentConversation.queryMessages("123",System.currentTimeMillis(),40,new AVIMMessagesQueryCallback() {
           @Override
           public void done(List<AVIMMessage> avimMessages, AVException e) {
-            Toast.makeText(PrivateConversationActivity.this, "messages got:" + avimMessages.size(),
-                Toast.LENGTH_SHORT).show();
+            if (e != null) {
+              e.printStackTrace();
+            } else {
+              Toast.makeText(PrivateConversationActivity.this,
+                  "messages got:" + avimMessages.size(),
+                  Toast.LENGTH_SHORT).show();
+            }
           }
         });
         break;
@@ -242,7 +249,8 @@ public class PrivateConversationActivity extends Activity
           @Override
           public void done(AVException e) {
             if (e == null) {
-              Toast.makeText(PrivateConversationActivity.this, getResources().getString(R.string.msg_here), Toast.LENGTH_SHORT).show();
+              Toast.makeText(PrivateConversationActivity.this,
+                  getResources().getString(R.string.msg_here), Toast.LENGTH_SHORT).show();
             }
           }
         });

@@ -62,6 +62,8 @@ public class HTBApplication extends Application {
         } else {
           ctnt = HTBApplication.lookupName(message.getFrom()) + message.getContent();
         }
+
+        System.out.println(client.getClientId()+" get message");
         Intent resultIntent =
             new Intent(getApplicationContext(), PrivateConversationActivity.class);
         resultIntent.putExtra(PrivateConversationActivity.DATA_EXTRA_SINGLE_DIALOG_TARGET,

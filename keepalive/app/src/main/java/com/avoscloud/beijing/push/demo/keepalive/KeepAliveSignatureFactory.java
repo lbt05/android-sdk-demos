@@ -46,10 +46,8 @@ public class KeepAliveSignatureFactory implements SignatureFactory {
 
     signatureElements.add(peerId);
 
-
     Collections.sort(watchIdsCopy);
     signatureElements.add(TextUtils.join(":", watchIdsCopy));
-
     signatureElements.add(String.valueOf(timestamp));
 
     signatureElements.add(nonce);

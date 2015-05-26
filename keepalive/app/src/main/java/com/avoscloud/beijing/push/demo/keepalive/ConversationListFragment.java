@@ -1,6 +1,7 @@
 package com.avoscloud.beijing.push.demo.keepalive;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.avos.avoscloud.AVException;
@@ -41,6 +42,7 @@ public class ConversationListFragment extends Fragment {
     LogUtil.avlog.d("try to fetch recent conversations");
     AVIMClient client = AVIMClient.getInstance(selfId);
     AVIMConversationQuery query = client.getQuery();
+    query.orderByDescending("createdAt");
     query.whereEqualTo("public", true);
     query.containsMembers(Arrays.asList(selfId));
     query.findInBackground(new AVIMConversationQueryCallback() {
