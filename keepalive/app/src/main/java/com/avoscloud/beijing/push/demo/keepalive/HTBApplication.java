@@ -45,6 +45,8 @@ public class HTBApplication extends Application {
     // 设置签名
     AVIMClient.setSignatureFactory(new KeepAliveSignatureFactory());
 
+    AVIMClient.setClientEventHandler(new KeepAliveClientEventHandler());
+
     // 设置默认的消息处理单元
     AVIMMessageManager.registerDefaultMessageHandler(new AVIMMessageHandler() {
       @Override
@@ -63,7 +65,7 @@ public class HTBApplication extends Application {
           ctnt = HTBApplication.lookupName(message.getFrom()) + message.getContent();
         }
 
-        System.out.println(client.getClientId()+" get message");
+        System.out.println(client.getClientId() + " get message");
         Intent resultIntent =
             new Intent(getApplicationContext(), PrivateConversationActivity.class);
         resultIntent.putExtra(PrivateConversationActivity.DATA_EXTRA_SINGLE_DIALOG_TARGET,
