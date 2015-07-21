@@ -1,14 +1,17 @@
 package com.avoscloud.beijing.push.demo.keepalive;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import com.avos.avoscloud.*;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 
+import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationMemberCountCallback;
 import com.avos.avoscloud.im.v2.AVIMMessage;
 import com.avos.avoscloud.im.v2.AVIMMessageHandler;
@@ -94,8 +97,8 @@ public class PrivateConversationActivity extends Activity
           messages.add(msg);
           adapter.notifyDataSetChanged();
           LogUtil.avlog.d("MSG received");
-        }else{
-            LogUtil.avlog.d("MSG from another client");
+        } else {
+          LogUtil.avlog.d("MSG from another client");
         }
       }
 
@@ -131,7 +134,6 @@ public class PrivateConversationActivity extends Activity
             }
           }
         });
-
     messages.add(m);
     adapter.notifyDataSetChanged();
   }
@@ -229,19 +231,41 @@ public class PrivateConversationActivity extends Activity
         this.updateConversationName();
         return true;
       case R.id.action_query_message_history:
-        currentConversation.queryMessages("123",System.currentTimeMillis(),40,new AVIMMessagesQueryCallback() {
-          @Override
-          public void done(List<AVIMMessage> avimMessages, AVException e) {
-            if (e != null) {
-              e.printStackTrace();
-            } else {
-              Toast.makeText(PrivateConversationActivity.this,
-                  "messages got:" + avimMessages.size(),
-                  Toast.LENGTH_SHORT).show();
-            }
-          }
-        });
+        currentConversation.queryMessages(100,
+            new AVIMMessagesQueryCallback() {
+              @Override
+              public void done(List<AVIMMessage> avimMessages, AVException e) {
+                if (e != null) {
+                  e.printStackTrace();
+                } else {
+                  for (AVIMMessage message : avimMessages) {
+                    if ("LGrTSpMpSr+Jnq4ZkIm7+Q".equals(message.getMessageId())) {
+                      System.err.println("msg contains");
+                    }
+                  }
+                  Toast.makeText(PrivateConversationActivity.this,
+                      "messages got:" + avimMessages.size(),
+                      Toast.LENGTH_SHORT).show();
+                }
+              }
+            });
         break;
+      case R.id.action_query_message_history_2:
+        currentConversation.queryMessages("LGrTSpMpSr+Jnq4ZkIm7+Q", 1435129851929l, 40,
+            new AVIMMessagesQueryCallback() {
+              @Override
+              public void done(List<AVIMMessage> avimMessages, AVException e) {
+                if (e != null) {
+                  e.printStackTrace();
+                } else {
+                  Toast.makeText(PrivateConversationActivity.this,
+                      "messages got:" + avimMessages.size(),
+                      Toast.LENGTH_SHORT).show();
+                }
+              }
+            });
+        break;
+
       case R.id.action_mockup_location:
         AVIMLocationMessage locationMessage = new AVIMLocationMessage();
         locationMessage.setLocation(new AVGeoPoint(138.4, 34.8));
@@ -263,6 +287,15 @@ public class PrivateConversationActivity extends Activity
               Toast.makeText(PrivateConversationActivity.this, "群内有" + count + "人",
                   Toast.LENGTH_SHORT).show();
             }
+          }
+        });
+        break;
+      case R.id.action_add_attribute:
+        currentConversation.setAttribute("shit", 1);
+        currentConversation.updateInfoInBackground(new AVIMConversationCallback() {
+          @Override
+          public void done(AVException e) {
+
           }
         });
     }

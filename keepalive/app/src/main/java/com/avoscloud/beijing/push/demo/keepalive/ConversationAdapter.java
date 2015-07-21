@@ -1,9 +1,11 @@
 package com.avoscloud.beijing.push.demo.keepalive;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 

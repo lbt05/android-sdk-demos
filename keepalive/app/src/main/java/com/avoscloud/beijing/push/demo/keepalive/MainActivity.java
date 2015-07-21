@@ -115,6 +115,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
   }
 
   private void onLoginSuccess() {
+    final long startTime = System.currentTimeMillis();
     retryTimes = 0;
     final String selfId = AVUser.getCurrentUser().getObjectId();
     HTBApplication.registerLocalNameCache(AVUser.getCurrentUser().getObjectId(), AVUser
@@ -126,6 +127,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
       public void done(AVIMClient client, AVException e) {
           LogUtil.avlog.d("callback from client open");
         if (e == null) {
+          LogUtil.avlog.d("time to spend for open session:"+(System.currentTimeMillis() -startTime));
           Intent intent = new Intent(MainActivity.this, ChatTargetActivity.class);
           startActivity(intent);
         } else {

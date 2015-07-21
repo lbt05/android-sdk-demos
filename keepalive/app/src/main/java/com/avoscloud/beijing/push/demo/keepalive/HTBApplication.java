@@ -105,4 +105,12 @@ public class HTBApplication extends Application {
   public static void registerLocalNameCache(String peerId, String name) {
     userNameCache.put(peerId, name);
   }
+
+  @Override
+  public void onTerminate() {
+    LogUtil.avlog.d("xiao mi want to kill me, help me !");
+    super.onTerminate();
+  }
+
+
 }
