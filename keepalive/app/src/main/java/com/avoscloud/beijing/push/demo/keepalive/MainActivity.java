@@ -7,6 +7,7 @@ import com.avos.avoscloud.LogInCallback;
 import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.SaveCallback;
 import com.avos.avoscloud.im.v2.AVIMClient;
+import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMClientCallback;
 
 import android.app.Activity;
@@ -124,7 +125,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
       LogUtil.avlog.d("try to  client open");
     client.open(new AVIMClientCallback() {
       @Override
-      public void done(AVIMClient client, AVException e) {
+      public void done(AVIMClient client, AVIMException e) {
           LogUtil.avlog.d("callback from client open");
         if (e == null) {
           LogUtil.avlog.d("time to spend for open session:"+(System.currentTimeMillis() -startTime));

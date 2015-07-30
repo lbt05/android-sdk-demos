@@ -36,8 +36,8 @@ public class HTBApplication extends Application {
     super.onCreate();
 
     // 必需：初始化你的appid和appkey，保存installationid
-    AVOSCloud.initialize(this, "2mw1d92dmi46d1rluolgj96zn8wk7fe98g0v2z0laksj2ifp",
-        "i5gxt9tgr80vbavd790hhlfmmphpl7052iiirg379p14rwsu");
+    AVOSCloud.initialize(this, "sax3bkbtwimgnpg6e44cm1uquurfgt8dwycjstw2yv09gw2b",
+        "a5pidc56v6b605dlbzi3t4x5sz8e163k2s7ldy8bdn4qghj0");
     AVInstallation.getCurrentInstallation().saveInBackground();
     PushService.setDefaultPushCallback(this, MainActivity.class);
     AVOSCloud.setDebugLogEnabled(true);
