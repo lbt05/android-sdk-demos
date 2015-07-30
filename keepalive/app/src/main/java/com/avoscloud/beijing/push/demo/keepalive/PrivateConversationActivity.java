@@ -279,7 +279,7 @@ public class PrivateConversationActivity extends Activity
       case R.id.action_query_member_count:
         currentConversation.getMemberCount(new AVIMConversationMemberCountCallback() {
           @Override
-          public void done(Integer count, AVException e) {
+          public void done(Integer count, AVIMException e) {
             if (e == null) {
               Toast.makeText(PrivateConversationActivity.this, "群内有" + count + "人",
                   Toast.LENGTH_SHORT).show();
