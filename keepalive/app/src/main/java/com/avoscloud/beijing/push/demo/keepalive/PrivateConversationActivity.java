@@ -84,11 +84,13 @@ public class PrivateConversationActivity extends Activity
     currentName = HTBApplication.lookupName(selfId);
 
     sendBtn.setOnClickListener(this);
-    if (getIntent().getExtras().getParcelable(Session.AV_SESSION_INTENT_DATA_KEY) != null) {
-      AVIMMessage msg = getIntent().getParcelableExtra(Session.AV_SESSION_INTENT_DATA_KEY);
-      messages.add(msg);
-      adapter.notifyDataSetChanged();
-    }
+    // currentConversation.queryMessages(new AVIMMessagesQueryCallback() {
+    // @Override
+    // public void done(List<AVIMMessage> list, AVException e) {
+    // messages.addAll(list);
+    // adapter.notifyDataSetChanged();
+    // }
+    // });
     messageHandler = new AVIMMessageHandler() {
       @Override
       public void onMessage(AVIMMessage msg, AVIMConversation conversation, AVIMClient client) {
@@ -231,36 +233,32 @@ public class PrivateConversationActivity extends Activity
         this.updateConversationName();
         return true;
       case R.id.action_query_message_history:
-        currentConversation.queryMessages(100,
+        currentConversation.queryMessages(10,
             new AVIMMessagesQueryCallback() {
               @Override
               public void done(List<AVIMMessage> avimMessages, AVException e) {
                 if (e != null) {
                   e.printStackTrace();
                 } else {
-                  for (AVIMMessage message : avimMessages) {
-                    if ("LGrTSpMpSr+Jnq4ZkIm7+Q".equals(message.getMessageId())) {
-                      System.err.println("msg contains");
-                    }
-                  }
-                  Toast.makeText(PrivateConversationActivity.this,
-                      "messages got:" + avimMessages.size(),
-                      Toast.LENGTH_SHORT).show();
+                  messages.addAll(avimMessages);
+                  adapter.notifyDataSetChanged();
                 }
               }
             });
         break;
       case R.id.action_query_message_history_2:
-        currentConversation.queryMessages("LGrTSpMpSr+Jnq4ZkIm7+Q", 1435129851929l, 40,
+        AVIMMessage message = messages.get(0);
+
+        currentConversation.queryMessages(message.getMessageId(), message.getTimestamp(), 10,
             new AVIMMessagesQueryCallback() {
+
               @Override
               public void done(List<AVIMMessage> avimMessages, AVException e) {
                 if (e != null) {
                   e.printStackTrace();
                 } else {
-                  Toast.makeText(PrivateConversationActivity.this,
-                      "messages got:" + avimMessages.size(),
-                      Toast.LENGTH_SHORT).show();
+                  messages.addAll(0,avimMessages);
+                  adapter.notifyDataSetChanged();
                 }
               }
             });
