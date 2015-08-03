@@ -9,6 +9,7 @@ import java.util.Map;
 import com.avos.avoscloud.*;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
+import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
@@ -66,7 +67,7 @@ public class PrivateConversationActivity extends Activity
     currentConversation.fetchInfoInBackground(new AVIMConversationCallback() {
 
       @Override
-      public void done(AVException e) {
+      public void done(AVIMException e) {
         if (e != null) {
           e.printStackTrace();
         } else {
@@ -127,7 +128,7 @@ public class PrivateConversationActivity extends Activity
         new AVIMConversationCallback() {
 
           @Override
-          public void done(AVException e) {
+          public void done(AVIMException e) {
             if (e != null) {
               e.printStackTrace();
             } else {
@@ -172,7 +173,7 @@ public class PrivateConversationActivity extends Activity
             currentConversation.updateInfoInBackground(new AVIMConversationCallback() {
 
               @Override
-              public void done(AVException e) {
+              public void done(AVIMException e) {
 
               }
             });
@@ -201,7 +202,7 @@ public class PrivateConversationActivity extends Activity
         currentConversation.kickMembers(Arrays.asList("123"), new AVIMConversationCallback() {
 
           @Override
-          public void done(AVException e) {
+          public void done(AVIMException e) {
             System.out.println("kicked 123");
           }
         });
@@ -210,7 +211,7 @@ public class PrivateConversationActivity extends Activity
         currentConversation.addMembers(Arrays.asList("123"), new AVIMConversationCallback() {
 
           @Override
-          public void done(AVException e) {
+          public void done(AVIMException e) {
             System.out.println("added 123");
           }
         });
@@ -219,7 +220,7 @@ public class PrivateConversationActivity extends Activity
       case R.id.action_quit:
         currentConversation.quit(new AVIMConversationCallback() {
           @Override
-          public void done(AVException e) {
+          public void done(AVIMException e) {
             onBackPressed();
           }
         });
@@ -236,7 +237,7 @@ public class PrivateConversationActivity extends Activity
         currentConversation.queryMessages(10,
             new AVIMMessagesQueryCallback() {
               @Override
-              public void done(List<AVIMMessage> avimMessages, AVException e) {
+              public void done(List<AVIMMessage> avimMessages, AVIMException e) {
                 if (e != null) {
                   e.printStackTrace();
                 } else {
@@ -253,7 +254,7 @@ public class PrivateConversationActivity extends Activity
             new AVIMMessagesQueryCallback() {
 
               @Override
-              public void done(List<AVIMMessage> avimMessages, AVException e) {
+              public void done(List<AVIMMessage> avimMessages, AVIMException e) {
                 if (e != null) {
                   e.printStackTrace();
                 } else {
@@ -269,7 +270,7 @@ public class PrivateConversationActivity extends Activity
         locationMessage.setLocation(new AVGeoPoint(138.4, 34.8));
         currentConversation.sendMessage(locationMessage, new AVIMConversationCallback() {
           @Override
-          public void done(AVException e) {
+          public void done(AVIMException e) {
             if (e == null) {
               Toast.makeText(PrivateConversationActivity.this,
                   getResources().getString(R.string.msg_here), Toast.LENGTH_SHORT).show();
@@ -280,7 +281,7 @@ public class PrivateConversationActivity extends Activity
       case R.id.action_query_member_count:
         currentConversation.getMemberCount(new AVIMConversationMemberCountCallback() {
           @Override
-          public void done(Integer count, AVException e) {
+          public void done(Integer count, AVIMException e) {
             if (e == null) {
               Toast.makeText(PrivateConversationActivity.this, "群内有" + count + "人",
                   Toast.LENGTH_SHORT).show();
@@ -292,7 +293,7 @@ public class PrivateConversationActivity extends Activity
         currentConversation.setAttribute("shit", 1);
         currentConversation.updateInfoInBackground(new AVIMConversationCallback() {
           @Override
-          public void done(AVException e) {
+          public void done(AVIMException e) {
 
           }
         });

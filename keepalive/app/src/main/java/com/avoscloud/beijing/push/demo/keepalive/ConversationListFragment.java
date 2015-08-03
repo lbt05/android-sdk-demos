@@ -10,6 +10,7 @@ import com.avos.avoscloud.LogUtil;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
+import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
 
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class ConversationListFragment extends Fragment {
     query.containsMembers(Arrays.asList(selfId));
     query.findInBackground(new AVIMConversationQueryCallback() {
       @Override
-      public void done(List<AVIMConversation> conversations, AVException e) {
+      public void done(List<AVIMConversation> conversations, AVIMException e) {
         if (e == null) {
           ConversationAdapter adapter = new ConversationAdapter(getActivity(), conversations);
           conversationList.setAdapter(adapter);

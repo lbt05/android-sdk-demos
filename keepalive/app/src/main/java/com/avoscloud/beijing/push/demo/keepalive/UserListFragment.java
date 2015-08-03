@@ -13,6 +13,7 @@ import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
+import com.avos.avoscloud.im.v2.AVIMException;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
 import com.avos.avoscloud.im.v2.AVIMConversationQuery;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
@@ -139,7 +140,7 @@ public class UserListFragment extends Fragment {
       query.orderByDescending("lm");
       query.findInBackground(new AVIMConversationQueryCallback() {
         @Override
-        public void done(List<AVIMConversation> avimConversations, AVException e) {
+        public void done(List<AVIMConversation> avimConversations, AVIMException e) {
           if (e == null) {
             if (avimConversations.size() > 0) {
               startConversationActivity(avimConversations.get(0));
@@ -151,7 +152,7 @@ public class UserListFragment extends Fragment {
                   + "]", attributes, false,
                   new AVIMConversationCreatedCallback() {
                     @Override
-                    public void done(AVIMConversation conversation, AVException e) {
+                    public void done(AVIMConversation conversation, AVIMException e) {
                       startConversationActivity(conversation);
                     }
                   });
