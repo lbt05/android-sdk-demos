@@ -10,6 +10,7 @@ import com.avos.avoscloud.*;
 import com.avos.avoscloud.im.v2.AVIMClient;
 import com.avos.avoscloud.im.v2.AVIMConversation;
 import com.avos.avoscloud.im.v2.AVIMException;
+import com.avos.avoscloud.im.v2.callback.AVIMClientStatusCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
@@ -258,7 +259,7 @@ public class PrivateConversationActivity extends Activity
                 if (e != null) {
                   e.printStackTrace();
                 } else {
-                  messages.addAll(0,avimMessages);
+                  messages.addAll(0, avimMessages);
                   adapter.notifyDataSetChanged();
                 }
               }
@@ -297,6 +298,15 @@ public class PrivateConversationActivity extends Activity
 
           }
         });
+        break;
+      case R.id.action_client_status:
+        currentClient.getClientStatus(new AVIMClientStatusCallback() {
+          @Override
+          public void done(AVIMClient.AVIMClientStatus status) {
+            System.out.println(status.getCode());
+          }
+        });
+        break;
     }
     return super.onOptionsItemSelected(item);
   }
